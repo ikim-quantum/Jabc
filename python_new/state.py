@@ -29,32 +29,6 @@ def rand(n):
     """
     psi = np.random.rand(1<<n, 1) + 1j * np.random.rand(1<<n, 1)
     return normalize(psi)
-    
-
-def amplitude(zs, x):
-    """
-    Given a set of coordinates, generate the wavefunction amplitude.
-    (alpha=1/2)
-
-    Args:
-        zs(list(complex)): List of complex numbers
-
-    Returns:
-        complex: Amplitude
-    """
-    N = len(zs)
-    if N%2==1:
-        return 0
-    elif bin(x).count("1")!=N/2:
-        return 0
-
-    znm = [zs[n] - zs[m] for n in range(N) for m in range(n+1, N) if ((x >> n & 1) == (x >> m & 1))]
-
-    return np.prod(znm)
-
-
-def amplitude_fast(zs, x):
-    return amp.amplitude(zs, x)
 
 
 def ansatz(zs):
@@ -69,7 +43,7 @@ def ansatz(zs):
         np.array: Wavefunction
     """
     N = len(zs)
-    psi = np.array([amplitude_fast(zs, x) for x in range(1<<N)])
+    psi = amp.ansatz(zs)
 
     return normalize(psi)
 

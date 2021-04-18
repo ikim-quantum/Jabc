@@ -15,8 +15,7 @@ GroupA=[
     (pi/2, pi/2),
     (pi/2, 13*pi/18),
     (2*pi/3, pi/3),
-    (2*pi/3, 2*pi/3),
-    (5*pi/6, pi/2)]
+    (2*pi/3, 2*pi/3)]
 
 GroupB=[
     (pi/6, 7*pi/6),
@@ -26,8 +25,7 @@ GroupB=[
     (pi/2, 7*pi/6),
     (pi/2, 25*pi/18),
     (2*pi/3, pi),
-    (2*pi/3, 4*pi/3),
-    (5*pi/6, 7*pi/6)]
+    (2*pi/3, 4*pi/3)]
 
 GroupC=[
     (pi/6, -pi/6),
@@ -37,10 +35,13 @@ GroupC=[
     (pi/2, -pi/6),
     (pi/2, pi/18),
     (2*pi/3, 5*pi/3),
-    (2*pi/3, 0),
-    (5*pi/6, -pi/6)]
+    (2*pi/3, 0)]
 
-GroupD=[(pi, 0)]
+GroupD=[(5*pi/6, 0),
+        (5*pi/6, pi/2),
+        (5*pi/6, pi),
+        (5*pi/6, pi*3/2)]
+        
 
 
 def s2c(theta, phi):
@@ -76,11 +77,12 @@ for pt in GroupC:
     zpoints.append(z)
     color.append("b")
 
-x, y, z = s2c(GroupD[0][0], GroupD[0][1])
-xpoints.append(x)
-ypoints.append(y)
-zpoints.append(z)
-color.append("black")
+for pt in GroupD:
+    x, y, z = s2c(pt[0], pt[1])
+    xpoints.append(x)
+    ypoints.append(y)
+    zpoints.append(z)
+    color.append("black")
 
 ax.scatter3D(xpoints, ypoints, zpoints, s=100, c=color)
 

@@ -18,7 +18,6 @@ def amplitude(complex[:] zs, int x):
 def ansatz(complex[:] zs):
     cdef int N = zs.size
     out = np.zeros(1<<N, dtype=np.cdouble)
-
     if N%2==1:
         return out
     else:
